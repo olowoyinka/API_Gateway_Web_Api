@@ -1,0 +1,24 @@
+{
+    "Routes": [
+        {
+            "UpstreamPathTemplate": "/account/{everything}",
+            "UpstreamHttpMethod": [ "POST" ],
+            "DownstreamScheme": "http",
+            "DownstreamHostandPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5062
+                }
+            ],
+            "DownstreamPathTemplate": "/{everything}",
+            "SwaggerKey": "account",
+            "RateLimitOptions": {
+                "ClientWhitelist": [],
+                "EnableRateLimiting": true,
+                "Period": "10s",
+                "PeriodTimespan": 100,
+                "Limit": 5
+            }
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost",
+        "RateLimitOptions": {
+            "QuotaExceededMessage": "Request not allowed",
+            "HttpStatusCode": 909
+        }
+    }
+}

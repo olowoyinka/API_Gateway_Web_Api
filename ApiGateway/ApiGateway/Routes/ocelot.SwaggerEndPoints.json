@@ -1,0 +1,59 @@
+{
+    "SwaggerEndPoints": [
+      {
+        "Key": "bffweb",
+        "TransformByOcelotConfig": false,
+        "Config": [
+          {
+            "Name": "BFF.Web",
+            "Version": "1.0",
+            "Url": "http://localhost:5191/swagger/v1/swagger.json"
+          }
+        ]
+      },
+      {
+        "Key": "customer",
+        "TransformByOcelotConfig": true,
+        "Config": [
+          {
+            "Name": "Customer.API",
+            "Version": "1.0",
+            "Url": "http://localhost:5160/swagger/v1/swagger.json"
+          }
+        ]
+      },
+      {
+        "Key": "account",
+        "TransformByOcelotConfig": true,
+        "Config": [
+          {
+            "Name": "Account.API",
+            "Version": "1.0",
+            "Url": "http://localhost:5062/swagger/v1/swagger.json"
+          }
+        ]
+      },
+      {
+        "Key": "product",
+        "TransformByOcelotConfig": true,
+        "Config": [
+          {
+            "Name": "Product.API",
+            "Version": "1.0",
+            "Url": "http://localhost:5107/swagger/v1/swagger.json"
+          }
+        ]
+      },
+      {
+        "Key": "order",
+        "TransformByOcelotConfig": true,
+        "Config": [
+          {
+            "Name": "Order.API",
+            "Version": "1.0",
+            "Url": "http://localhost:5265/swagger/v1/swagger.json"
+          }
+        ]
+      }
+    ]
+}

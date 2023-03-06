@@ -1,0 +1,102 @@
+version: '3.4'
+
+networks:
+  backend:
+  frontend:
+
+services:
+  customerdb:
+    container_name: customerdb
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=password@12345#
+    networks:
+      - backend
+    ports:
+      - 18001:1433
+  
+  customerwebapi:
+    container_name: customer-api
+    image: customerwebapi
+    build:
+      context: .
+      dockerfile: Microservices/CustomerWebApi/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 18002:3306
+    environment:
+      - DB_HOST=customerdb
+      - DB_NAME=customer
+      - DB_SA_PASSWORD=password@12345#
+  
+  productdb:
+    container_name: productdb
+    image: mysql:8.0.29-oracle
+    environment:
+      - MYSQL_ROOT_PASSWORD=password@12345#
+    networks:
+      - backend
+    ports:
+      - 18003:3306
+  
+  productwebapi:
+    container_name: product-api
+    image: productwebapi
+    build:
+      context: .
+      dockerfile: Microservices/ProductWebApi/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 18004:3306
+    environment:
+      - DB_HOST=productdb
+      - DB_NAME=product
+      - DB_ROOT_PASSWORD=password@12345#
+  
+  orderdb:
+    container_name: orderdb
+    image: mongo
+    networks:
+      - backend
+    ports:
+      - 18005:27017
+
+  orderwebapi:
+    container_name: order-api
+    image: orderwebapi
+    build:
+      context: .
+      dockerfile: Microservices/OrderWebApi/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 18006:3306
+    environment:
+      - DB_HOST=orderdb
+      - DB_NAME=order
+  
+  apigateway:
+    container_name: api-gateway
+    image: apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/ApiGateway/Dockerfile
+    networks:
+      - backend
+      - frontend
+    ports:
+      - 8001:80
+    
+  blazorserverwebui:
+    container_name: blazor-web-ui
+    image: blazorserverwebui
+    build:
+      context: .
+      dockerfile: UI/BlazorServerWebUI/Dockerfile
+    networks:
+      - frontend
+    ports:
+      - 8002:80

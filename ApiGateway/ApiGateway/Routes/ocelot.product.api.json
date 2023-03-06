@@ -1,0 +1,31 @@
+{
+    "Routes": [
+        {
+            "UpstreamPathTemplate": "/product/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+            "DownstreamScheme": "http",
+            "DownstreamHostandPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5107
+                }
+            ],
+            "DownstreamPathTemplate": "/{everything}",
+            "SwaggerKey": "product",
+            "RateLimitOptions": {
+                "ClientWhitelist": [],
+                "EnableRateLimiting": true,
+                "Period": "10s",
+                "PeriodTimespan": 100,
+                "Limit": 5
+            },
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "Bearer",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "Role": "Administrator"
+            }
+        }
+    ]
+}

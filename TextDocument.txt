@@ -1,0 +1,7 @@
+docker build -t gatewayapi:1.00 .
+
+docker run --name gatewayapi -p 5602:80 -d gatewayapi:1.00
+
+dotnet sln add (ls -r **\*.csproj)
+
+docker-compose up -d
